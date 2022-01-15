@@ -44,16 +44,15 @@ function next2dIndex(i, ilength, j, jlength) {
 function isValidBoard(board) {
     var columnNum = board.length
     var rowsNum = board[0].length
-    // TODO row and column are reversed
 
     // are rows valid?
     for (var row = 0; row < rowsNum; row++) {
         var nonUniqueValues = []
         var uniqueValues = new Set()
         for (var column = 0; column < columnNum; column++) {
-            if (board[column][row] !== " ") {
-                nonUniqueValues.push(board[column][row])
-                uniqueValues.add(board[column][row])
+            if (board[row][column] !== " ") {
+                nonUniqueValues.push(board[row][column])
+                uniqueValues.add(board[row][column])
             }
         }
         if (nonUniqueValues.length != uniqueValues.size) {
@@ -66,9 +65,9 @@ function isValidBoard(board) {
         var nonUniqueValues = []
         var uniqueValues = new Set()
         for (var row = 0; row < rowsNum; row++) {
-            if (board[column][row] !== " ") {
-                nonUniqueValues.push(board[column][row])
-                uniqueValues.add(board[column][row])
+            if (board[row][column] !== " ") {
+                nonUniqueValues.push(board[row][column])
+                uniqueValues.add(board[row][column])
             }
         }
         if (nonUniqueValues.length !== uniqueValues.size) {
@@ -77,11 +76,28 @@ function isValidBoard(board) {
     }
 
     // are squares valid?
-    // var squareLength = Math.sqrt(columnNum)
-    // if (squareLength % 1 != 0) {
-    //     throw new Error("cannot find block size because columnNum is not a square number")
-    // }
-
+    var squareLength = Math.sqrt(columnNum)
+    if (squareLength % 1 !== 0) {
+        throw new Error("cannot find block size because columnNum is not a square number")
+    }
+    for (var i = 0; i < rowsNum; i += squareLength) {
+        for (var j = 0; j < columnNum; j += squareLength) {
+            var nonUniqueValues = []
+            var uniqueValues = new Set()
+            for (var ioffset = 0; ioffset < squareLength; ioffset++) {
+                for (var joffset = 0; joffset < squareLength; joffset++) {
+                    var value = board[i + ioffset][j + joffset]
+                    if (value !== " ") {
+                        nonUniqueValues.push(value)
+                        uniqueValues.add(value)
+                    }
+                }
+            }
+            if (nonUniqueValues.length !== uniqueValues.size) {
+                return false
+            }
+        }
+    }
 
     return true
 }
