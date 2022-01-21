@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .sodukoCell {
     border: 1px black solid;
     padding: 3px;
