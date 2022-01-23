@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import listenForOutsideClick from './listenForOutsideClicks'
+import CellHints from './CellHints';
 
-function SodukoCell(props) {
+export default function SodukoCell(props) {
     const [isClue, _] = useState(props.value != " ")
     const ref = useRef(null);
     const [listeningForOutsideClick, setListeningForOutsideClick] = useState(false);
@@ -17,10 +18,8 @@ function SodukoCell(props) {
     
 
     return <div ref={ref} className={'sodukoCell ' + (isClue ? "clueCell" : "")} onClick={toggle}>
-        {isShowHints && <div className='cellHints z-50 absolute mt-8 bg-blue-300 rounded'>1 | 2 | 3</div>}
+        {isShowHints && <CellHints allowedNumbers={props.getHints(props.row, props.column)} onChange={(newValue) => props.onChange(props.row, props.column, newValue)}></CellHints>}
         <input type="number" value={props.value} disabled={isClue} min={1} max={9}
             onChange={(e) => props.onChange(props.row, props.column, e.target.value)} />
     </div>
 }
-
-export default SodukoCell;

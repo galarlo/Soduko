@@ -1,4 +1,4 @@
-function solveSoduko(board) {
+export function solveSoduko(board) {
     return solveSodukoDepthFirst(board, 0, 0)
 }
 
@@ -102,5 +102,33 @@ function isValidBoard(board) {
     return true
 }
 
+export function allowedNumbers(board, row, column) {
+    var allowed = new Set([1,2,3,4,5,6,7,8,9])
+
+    // discard numbers filled in column
+    for (var i = 0; i < board.length; i++) {
+        allowed.delete(board[i][column])
+    }
+
+    // discard numbers filled in row
+    for (var j = 0; j < board.length; j++) {
+        allowed.delete(board[row][j])
+    }
+
+    const TILE_SIZE = 3;
+    var tileStartRow = floorToMultiple(row, TILE_SIZE)
+    var tileStartColumn = floorToMultiple(column, TILE_SIZE)
+    for (var i = tileStartRow; i < tileStartRow + TILE_SIZE; i++) {
+        for (var j = tileStartColumn; j < tileStartColumn + TILE_SIZE; j++) {
+            allowed.delete(board[i][j])
+        }
+    }
+
+    return [...allowed]
+}
+
+function floorToMultiple(number, multipleOf) {
+    return number - (number % multipleOf)
+}
 
 export default solveSoduko;

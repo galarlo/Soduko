@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import SodukoCell from "./SodukoCell"
-import solveSoduko from "./solve.js"
+import {solveSoduko, allowedNumbers} from "./SodukoHelpers.js"
 
 function SodukoGame(props) {
     const [board, setBoard] = useState(createSodukoBoard(props.rowsCount, props.columnsCount))
@@ -23,7 +23,7 @@ function SodukoGame(props) {
     for (var i=0; i<props.columnsCount; i++) {
       var cellsInColumn = []
       for (var j=0; j<props.rowsCount; j++) {
-        cellsInColumn.push(<SodukoCell key={i + "," + j} row={j} column={i} value={board[j][i]} onChange={onChange} />)
+        cellsInColumn.push(<SodukoCell key={i + "," + j} row={j} column={i} value={board[j][i]} getHints={(row, column) => allowedNumbers(board, row, column)} onChange={onChange} />)
       }
       rows.push(<div key={i} className="sodukoColumn">{cellsInColumn}</div>)
     }
