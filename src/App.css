@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --tile-border: 2px solid black;
+}
+
 .sodukoCell {
     border: 1px black solid;
     padding: 3px;
@@ -14,11 +18,19 @@
 }
 
 .sodukoCell:nth-of-type(3n) {
-    border-bottom: 3px gray dashed;
+    border-bottom: var(--tile-border);
+}
+
+.sodukoCell:first-of-type {
+    border-top: var(--tile-border);
 }
 
 .sodukoColumn:nth-of-type(3n) {
-    border-right: 3px gray dashed;
+    border-right: var(--tile-border);
+}
+
+.sodukoColumn:first-of-type {
+    border-left: var(--tile-border);
 }
 
 input {

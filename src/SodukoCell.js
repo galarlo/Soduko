@@ -13,7 +13,7 @@ function SodukoCell(props) {
         setListeningForOutsideClick,
         ref,
         setIsShowHints,
-      ));
+      ), [ref]);
     
 
     return <div ref={ref} className={'sodukoCell ' + (isClue ? "clueCell" : "")} onClick={toggle}>

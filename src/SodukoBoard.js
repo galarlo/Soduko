@@ -27,9 +27,10 @@ function SodukoGame(props) {
       }
       rows.push(<div key={i} className="sodukoColumn">{cellsInColumn}</div>)
     }
-    return <div className='sodukoGame'>
+    return <div className='sodukoGame flex flex-col items-center'>
       <div className="sodukoBoard">{rows}</div>
-      <button onClick={onSolve}>Solve Soduko</button>
+      <button onClick={onSolve} className='border-2 border-green-400 border-opacity-20 
+      bg-green-500 bg-opacity-25 hover:bg-opacity-90 mt-2 shadow-md'>Solve Soduko</button>
     </div>
 }
 
