@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Soduko/static/css/main.fc8df33e.css",
+    "main.js": "/Soduko/static/js/main.7fe056ac.js",
+    "index.html": "/Soduko/index.html",
+    "main.fc8df33e.css.map": "/Soduko/static/css/main.fc8df33e.css.map",
+    "main.7fe056ac.js.map": "/Soduko/static/js/main.7fe056ac.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fc8df33e.css",
+    "static/js/main.7fe056ac.js"
+  ]
+}
